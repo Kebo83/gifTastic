@@ -9,17 +9,18 @@
 <body>
   <div id="comedianButtons">
   </div>
-
-  <div id="gifs-appear-here">
-  </div>
 <br>
-  <form id="person-form">
+<form id="person-form">
       <label for="person1-input">Add an Actor, Actress, or Comedian</label>
       <input type="text" id="person-input">
       <br>
  <input id="add-person" type="submit" value="Click to Add Person">
     </form>
-
+<br>
+  <div id="gifs-appear-here">
+  </div>
+<br>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     var topics = ["Adam Sandler", "Chris Rock", "Jim Carrey", "Eddie Murphy", "Will Ferrell", "Dave Chappelle", "Woody Harelson", "Charlie Chaplin"];
@@ -29,10 +30,11 @@
       var split = loop.split(" ");
       var name = split[0] + split[1];
 
-      console.log(name);
-      $("#comedianButtons").append("<button data-person=" + name + ">" + name);
+      console.log(loop);
+      $("#comedianButtons").append("<button data-person=" + name + ">" + loop);
       console.log(i);
     };
+
   
     $("button").on("click", function () {
       var comedians = $(this).attr("data-person");
@@ -90,47 +92,35 @@
       });
     });
 
-      function renderButtons() {
-
-        // Deleting the movies prior to adding new movies
-        // (this is necessary otherwise you will have repeat buttons)
-        // $("#buttons-view").empty();
-
-        // Looping through the array of movies
-        // for (var i = 0; i < movies.length; i++) {
-
-          // Then dynamicaly generating buttons for each movie in the array
-          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-          var personName = $("<button data-person=" + $("#person-input") + ">" + $("#person-input"));
-          console.log(personName);
-          // Adding a class of movie-btn to our button
-          // a.addClass("movie-btn");
-          // Adding a data-attribute
-          personName.attr("data-name", $("#person-input"));
-          // Providing the initial button text
-          // a.text(movies[i]);
-          // Adding the button to the buttons-view div
-          $("#comedianButtons").append(personName);
-        };
-      // }
-
-
       $("#add-person").on("click", function(event) {
         event.preventDefault();
-        var person = $("#person-input")
-        // .val().trim()
-        ;
-        var personName = $("<button data-person=" + person + ">" + person);
+        var person = $("#person-input").val().trim();
+        var personName = JSON.stringify(person);
+        // var personName = $("<button data-person=" + person + ">" + person);
+        var personName1=  personName.split(" ");
+      var combinedName = personName1[0] + personName1[1];
           console.log(personName);
+          console.log(combinedName);
           // Adding a class of movie-btn to our button
           // a.addClass("movie-btn");
           // Adding a data-attribute
-          personName.attr("data-name", $("#person-input"));
- console.log(personName);
+
+//  console.log(personName);
         // Adding movie from the textbox to our array
-        topics.push(personName);
-        renderButtons();
+       topics.push(combinedName);
+        
+      //   for (i = 0; i < topics.length; i++) {
+      // console.log(topics);
+      // var loop = topics[i];
+      // var split = loop.split(" ");
+      // var name = split[0] + split[1];
+
+      // console.log(name);
+  var newButton=$("#comedianButtons").append("<button data-person=" + combinedName + ">" + person);
+      // newButton.attr("data-name", combinedName);
+      // console.log(i);
       });
+      // });
   </script>
 </body>
 
