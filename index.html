@@ -12,6 +12,13 @@
 
   <div id="gifs-appear-here">
   </div>
+<br>
+  <form id="person-form">
+      <label for="person1-input">Add an Actor, Actress, or Comedian</label>
+      <input type="text" id="person-input">
+      <br>
+ <input id="add-person" type="submit" value="Click to Add Person">
+    </form>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
@@ -82,6 +89,48 @@
       // }
       });
     });
+
+      function renderButtons() {
+
+        // Deleting the movies prior to adding new movies
+        // (this is necessary otherwise you will have repeat buttons)
+        // $("#buttons-view").empty();
+
+        // Looping through the array of movies
+        // for (var i = 0; i < movies.length; i++) {
+
+          // Then dynamicaly generating buttons for each movie in the array
+          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+          var personName = $("<button data-person=" + $("#person-input") + ">" + $("#person-input"));
+          console.log(personName);
+          // Adding a class of movie-btn to our button
+          // a.addClass("movie-btn");
+          // Adding a data-attribute
+          personName.attr("data-name", $("#person-input"));
+          // Providing the initial button text
+          // a.text(movies[i]);
+          // Adding the button to the buttons-view div
+          $("#comedianButtons").append(personName);
+        };
+      // }
+
+
+      $("#add-person").on("click", function(event) {
+        event.preventDefault();
+        var person = $("#person-input")
+        // .val().trim()
+        ;
+        var personName = $("<button data-person=" + person + ">" + person);
+          console.log(personName);
+          // Adding a class of movie-btn to our button
+          // a.addClass("movie-btn");
+          // Adding a data-attribute
+          personName.attr("data-name", $("#person-input"));
+ console.log(personName);
+        // Adding movie from the textbox to our array
+        topics.push(personName);
+        renderButtons();
+      });
   </script>
 </body>
 
